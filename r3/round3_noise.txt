@@ -1,0 +1,5 @@
+/home/user/Documents
+/tmp/.hidden_folder
+/var/www/html/assets
+/etc/opt/configs
+/usr/share/doc/manual
