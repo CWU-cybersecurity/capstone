@@ -1,0 +1,67 @@
+sample 1:
+sender name: Corporate Account Protection
+sender subject: ACTION REQUIRED: Unusual Login Attempt Detected (ID: 99283-SEC)
+<table width="100%" bgcolor="#f4f4f4" cellpadding="20">
+    <tr>
+        <td>
+            <table width="500" align="center" bgcolor="#ffffff" style="padding: 20px; border: 1px solid #dddddd;">
+                <tr>
+                    <td>
+                        <h2 style="color: #d9534f;">Security Alert: Unusual Login Detected</h2>
+                        <p>Our systems detected a login to your account from an unrecognized device in <strong>Moscow, RU</strong>.</p>
+                        <p>If this was not you, please secure your account immediately by clicking the button below:</p>
+                        <div style="text-align: center; margin: 30px 0;">
+                            <a href="http://[ATTACKER_IP]/secure-login" style="background-color: #d9534f; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">Secure My Account Now</a>
+                        </div>
+                        <p style="font-size: 12px; color: #777;">Reference ID: 99283-SEC</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+sample 2:
+sender name: Global HelpDesk [No-Reply]
+sender subject: Update regarding your Support Ticket #88210 - VPN Configuration
+<table width="100%" bgcolor="#f9f9f9" cellpadding="20">
+    <tr>
+        <td>
+            <table width="600" align="center" bgcolor="#ffffff" style="border: 1px solid #e0e0e0; font-family: Arial, sans-serif;">
+                <tr bgcolor="#007bff">
+                    <td style="padding: 10px; color: white; font-weight: bold;">IT Service Desk - Ticket #88210</td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px;">
+                        <p>Hello,</p>
+                        <p>A change has been made to your <strong>Corporate VPN Access</strong>. To prevent a lockout, you must review the updated configuration file and acknowledge the new terms of use.</p>
+                        <p><a href="http://[ATTACKER_IP]/vpn-update.html" style="color: #007bff; text-decoration: underline;">View Ticket Details and Download Config</a></p>
+                        <p>Thank you,<br>Internal IT Support Team</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+sample 3:
+sender name: Facilities Management
+sender subject: Building Maintenance Notice: 4th Floor HVAC (Saturday, Oct 14)
+<table width="100%" bgcolor="#eeeeee" cellpadding="20">
+    <tr>
+        <td>
+            <table width="600" align="center" bgcolor="#ffffff" style="padding: 30px; border-radius: 8px; font-family: 'Segoe UI', Tahoma, sans-serif;">
+                <tr>
+                    <td>
+                        <h1 style="color: #2c3e50; margin-top: 0;">Office Maintenance Notice</h1>
+                        <p>Hello Team,</p>
+                        <p>Please be advised that the <strong>HVAC system</strong> on the 4th floor will be undergoing routine maintenance this Saturday between 8:00 AM and 2:00 PM.</p>
+                        <p>Access to the building will remain open, but temperatures may fluctuate during this period. Please ensure your workstations are powered down before leaving on Friday.</p>
+                        <hr style="border: 0; border-top: 1px solid #eee;">
+                        <p style="color: #888; font-size: 12px;">This is an automated operational notice. No reply is required.</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
