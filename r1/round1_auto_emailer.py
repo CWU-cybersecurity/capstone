@@ -232,5 +232,8 @@ if __name__ == "__main__":
         run_spear_phish(SENDER_NAME, TARGET_SUBJECT, TARGET_BODY)
         
         print("Mail sent successful")
-        time.sleep(30)
+
+        # randomly wait between 15-60 seconds before sending next email
+        wait_time = random.randint(15, 60)
+        time.sleep(wait_time)
         
