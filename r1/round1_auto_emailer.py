@@ -7,9 +7,9 @@ import time
 # tested setoolkit version 8.0.3
 
 # configurations
-TARGET_EMAIL = "partsale26@gmail.com" # target email
-SENDER_EMAIL_1 = "didioil256@gmail.com" # sender email
-GMAIL_PASSWORD_1 = "cjas mgmv grkc yapg" # Use an App Password, not your real one
+TARGET_EMAIL = "" # target email
+SENDER_EMAIL_1 = "" # sender email
+GMAIL_PASSWORD_1 = "" # Use an App Password, not your real one
 SET_PROMPT = r"set.*>" 
 
 SENDER_NAME_1 = "Jamie"
