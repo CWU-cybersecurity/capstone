@@ -1,5 +1,5 @@
 /home/user/Documents
-/tmp/.hidden_folder
-/var/www/html/assets
+/var/www
 /etc/opt/configs
 /usr/share/doc/manual
+/home/user/Desktop/-orange

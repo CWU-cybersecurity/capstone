@@ -70,6 +70,77 @@ function Gen-VM {
     }
 }
 
+
+# for GNU/Debian Linux
+function Set-VM-IP {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$NamePrefix,
+        [Parameter(Mandatory=$true)]
+        [string]$network_ip,
+        [Parameter(Mandatory=$true)]
+        [int]$iprangeMin,
+        [Parameter(Mandatory=$true)]
+        [int]$iprangeMax,
+        [Parameter(Mandatory=$true)]
+        [int]$prefix,
+        [Parameter(Mandatory=$true)]
+        [string]$uname,
+        [Parameter(Mandatory=$true)]
+        [string]$passwd
+    )   
+
+    process {
+        $vmsFound = @(Get-VM -Name "$NamePrefix*" -ErrorAction SilentlyContinue)
+        $sec_pass = ConvertTo-SecureString $passwd -AsPlainText -Force
+        $guest_cred = New-Object System.Management.Automation.PSCredential($uname, $sec_pass)
+
+        if($vmsFound.Count -eq 0) {
+            Write-Warning "No target VM found starting with $NamePrefix"
+            return
+        }
+
+        # --- Networking Setup ---
+        $base_ip = $network_ip.Substring(0, $network_ip.LastIndexOf('.'))
+        $router_ip = $base_ip + ".1"
+        
+        $idx = $iprangeMin
+
+        $ifname_cmd = "ip -o link show | awk -F': ' '`$3 !~ /lo|virbr/ {print `$2; exit}'"
+        foreach($vm in $vmsFound) {
+            if($idx -gt $iprangeMax) {
+                Write-Warning "Exceeded Max IP range ($iprangeMax). Stopping."
+                break
+            }
+            Write-Host $vm.PowerState
+            if($vm.PowerState -eq "PoweredOff") {
+                Write-Host "Starting $($vm.Name)..." -ForegroundColor Cyan
+                Start-VM -VM $vm -Confirm:$false | Out-Null
+            }
+
+            # Wait for VM Tools to be ready so we can talk to the guest
+            #Write-Host "Waiting for Guest Tools on $($vm.Name)..."
+            #Wait-Tools -VM $vm
+
+            try {
+                $target_ip = "$base_ip.$idx"
+                $script = @"
+interface=\$($ifname_cmd)
+echo '$passwd' | sudo -S ip addr add $target_ip/$prefix dev \$interface
+echo '$passwd' | sudo -S ip route add default via $router_ip dev \$interface
+"@
+                Invoke-VMScript -VM $vm -ScriptText $script -GuestCredential $guest_cred -ScriptType Bash 
+            }
+            catch {
+                Write-Warning "Failed to execute command on $($vm.Name)"
+            }
+
+            $idx++
+          
+        }
+    }
+}
+
 function Remove-Lab-VM {
     param(
         [Parameter(Mandatory=$true)]
@@ -101,3 +172,4 @@ function Remove-Lab-VM {
         Write-Host "Cleanup complete." -ForegroundColor Green
     }
 }
+

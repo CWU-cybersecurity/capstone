@@ -1,5 +1,3 @@
-/home/user/Documents
-/tmp/.hidden_folder
-/var/www/html/assets
-/etc/opt/configs
-/usr/share/doc/manual
+/home/USER/Documents
+/home/USER/.hidden_folder
+/home/USER/Desktop/-oragnge
