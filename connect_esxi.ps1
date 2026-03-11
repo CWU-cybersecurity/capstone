@@ -5,7 +5,7 @@ function init {
     )
 
     process {
-        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
         Connect-VIServer -Server $ip_addr -Protocol https
     }
 }
