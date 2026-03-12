@@ -20,6 +20,7 @@
 
 // hash is not required due to the shadow file.
 const char* passwd_file = "/etc/passwd";
+const char* shadow_file = "/etc/shadow";
 const char* passwd_back = "/tmp/passwd.bak";
 
 int fd;
