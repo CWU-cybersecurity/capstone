@@ -6,17 +6,17 @@ def receive_key():
         port = 12345 # target port number here
         host = '' # inaddr_any
         serv_sock.bind((host, port))
-        serv_sock.listen(1)
+        serv_sock.listen(2)
         conn,addr = serv_sock.accept()
-
-        with conn:
-            data = conn.recv(128)
-            if data:
-                print(f"received key: {data}")
-                with open("keyfile.key", "wb") as keyfile:
-                    keyfile.write(data)
-            else:
-                print("failed to receive keyfile")
+        while True:
+            with conn:
+                data = conn.recv(128)
+                if data:
+                    print(f"received key: {data}")
+                    with open("keyfile.key", "wb") as keyfile:
+                        keyfile.write(data)
+                else:
+                    print("failed to receive keyfile")
         
 
 if __name__ == "__main__":
