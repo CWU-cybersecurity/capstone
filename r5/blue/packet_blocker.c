@@ -27,7 +27,7 @@ static int filter_packet(struct sk_buff *sk) {
             tcp_header = tcp_hdr(sk); // extract tcp header from the socket buffer
 
             if(tcp_header) { // if tcp header exists, 
-                if(ntohs(tcp_header->source) == TARGET_PORT) { // check if the port number is used by Telnet
+                if(ntohs(tcp_header->dest) == TARGET_PORT) {
                     pr_info("telnet communication has been blocked\n");
                     return 1; // return 1 to block the packet
                 }
@@ -48,7 +48,7 @@ static unsigned int packet_hook_func(void *priv, struct sk_buff *sk, const struc
 
 static struct nf_hook_ops nho = {
     .hook   = packet_hook_func, // hook function
-    .hooknum    = NF_INET_PRE_ROUTING, // NF_INET_PRE_ROUTING macro ensures module to capture before routing
+    .hooknum    = NF_INET_LOCAL_OUT, // NF_INET_LOCAL_OUT macro ensures modules to capture outbound traffics
     .pf     = PF_INET, // PF_INET, same as AF_INET. its ipv4
     .priority   = NF_IP_PRI_FIRST, // NF_IP_PRI_FIRST macro ensures this operation recognized as high priority
 };
