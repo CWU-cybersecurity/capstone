@@ -36,7 +36,7 @@ def encrypt_file(filepath):
         contents = file.read()
     
     # change keyfile location
-    with open("absolute path for the key file", "rb") as keyfile:
+    with open("keyfile.key", "rb") as keyfile:
         key = keyfile.read()
     encrypted_contents = Fernet(key).encrypt(contents)
 

@@ -9,7 +9,7 @@
 #include <linux/skbuff.h>
 
 
-#define TARGET_PORT 23 // change this port number
+#define TARGET_PORT 1999 // change this port number
 
 static int filter_packet(struct sk_buff *sk) {
 
@@ -27,7 +27,7 @@ static int filter_packet(struct sk_buff *sk) {
             tcp_header = tcp_hdr(sk); // extract tcp header from the socket buffer
 
             if(tcp_header) { // if tcp header exists, 
-                if(ntohs(tcp_header->dest) == TARGET_PORT) { // check if the port number is used by Telnet
+                if(ntohs(tcp_header->source) == TARGET_PORT) { // check if the port number is used by Telnet
                     pr_info("telnet communication has been blocked\n");
                     return 1; // return 1 to block the packet
                 }
